@@ -8,3 +8,5 @@ logs/
 KILL
 *.sqlite
 .replay_cache/
+
+.DS_Store
