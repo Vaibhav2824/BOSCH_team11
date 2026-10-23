@@ -1,34 +1,56 @@
 # Provisional offline fixtures derived from the public briefing categories.
-# Replace these entries with organiser bundles when they are supplied.
+# No organiser bundles exist; these are synthetic. Expected answers are true by
+# construction of each synthetic bundle and are only used by eval/, never by src/.
+# expected_action "none" means the agent should escalate with findings.
 schema: provisional-v0
 incidents:
   - id: app-payment-charge-failure
     bundle: bundles/app-payment-charge-failure
     category: application
+    expected_component: payment
+    expected_action: toggle_feature_flag
   - id: app-cart-intermittent-failure
     bundle: bundles/app-cart-intermittent-failure
     category: application
+    expected_component: cart
+    expected_action: toggle_feature_flag
   - id: app-catalog-single-product-failure
     bundle: bundles/app-catalog-single-product-failure
     category: application
+    expected_component: product-catalog
+    expected_action: toggle_feature_flag
   - id: app-recommendation-memory-growth
     bundle: bundles/app-recommendation-memory-growth
     category: application
+    expected_component: recommendation
+    expected_action: restart_service
   - id: app-ad-cpu-gc-pressure
     bundle: bundles/app-ad-cpu-gc-pressure
     category: application
+    expected_component: ad
+    expected_action: toggle_feature_flag
   - id: app-homepage-traffic-flood
     bundle: bundles/app-homepage-traffic-flood
     category: application
+    expected_component: load-generator
+    expected_action: throttle_load_generator
   - id: infra-service-restarting
     bundle: bundles/infra-service-restarting
     category: infrastructure
+    expected_component: currency
+    expected_action: restart_service
   - id: infra-cache-database-unavailable
     bundle: bundles/infra-cache-database-unavailable
     category: infrastructure
+    expected_component: valkey-cart
+    expected_action: restart_service
   - id: infra-network-latency
     bundle: bundles/infra-network-latency
     category: infrastructure
+    expected_component: shipping
+    expected_action: none
   - id: infra-cpu-memory-starvation
     bundle: bundles/infra-cpu-memory-starvation
     category: infrastructure
+    expected_component: quote
+    expected_action: none

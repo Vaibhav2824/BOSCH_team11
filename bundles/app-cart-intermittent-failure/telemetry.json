@@ -1,1 +1,247 @@
-{"schema":"telemetry-bundle-v0","incident_id":"app-cart-intermittent-failure","category":"application","metrics":{"services":[]},"traces":[],"logs":[],"containers":[]}
+{
+  "schema": "telemetry-bundle-v0",
+  "incident_id": "app-cart-intermittent-failure",
+  "category": "application",
+  "captured_at": "2026-10-23T10:00:00Z",
+  "metrics": {
+    "services": [
+      {
+        "service": "frontend-proxy",
+        "rps": 12.0,
+        "error_pct": 0.2,
+        "p95_ms": 140,
+        "baseline_error_pct": 0.2,
+        "baseline_p95_ms": 140
+      },
+      {
+        "service": "frontend",
+        "rps": 11.0,
+        "error_pct": 3.0,
+        "p95_ms": 120,
+        "baseline_error_pct": 0.3,
+        "baseline_p95_ms": 120
+      },
+      {
+        "service": "checkout",
+        "rps": 1.5,
+        "error_pct": 9.0,
+        "p95_ms": 180,
+        "baseline_error_pct": 0.4,
+        "baseline_p95_ms": 180
+      },
+      {
+        "service": "payment",
+        "rps": 1.5,
+        "error_pct": 0.1,
+        "p95_ms": 40,
+        "baseline_error_pct": 0.1,
+        "baseline_p95_ms": 40
+      },
+      {
+        "service": "cart",
+        "rps": 6.0,
+        "error_pct": 14.0,
+        "p95_ms": 40,
+        "baseline_error_pct": 0.2,
+        "baseline_p95_ms": 25
+      },
+      {
+        "service": "product-catalog",
+        "rps": 9.0,
+        "error_pct": 0.1,
+        "p95_ms": 15,
+        "baseline_error_pct": 0.1,
+        "baseline_p95_ms": 15
+      },
+      {
+        "service": "recommendation",
+        "rps": 4.0,
+        "error_pct": 0.2,
+        "p95_ms": 60,
+        "baseline_error_pct": 0.2,
+        "baseline_p95_ms": 60
+      },
+      {
+        "service": "ad",
+        "rps": 4.0,
+        "error_pct": 0.1,
+        "p95_ms": 30,
+        "baseline_error_pct": 0.1,
+        "baseline_p95_ms": 30
+      },
+      {
+        "service": "currency",
+        "rps": 8.0,
+        "error_pct": 0.0,
+        "p95_ms": 8,
+        "baseline_error_pct": 0.0,
+        "baseline_p95_ms": 8
+      },
+      {
+        "service": "shipping",
+        "rps": 2.0,
+        "error_pct": 0.1,
+        "p95_ms": 35,
+        "baseline_error_pct": 0.1,
+        "baseline_p95_ms": 35
+      },
+      {
+        "service": "quote",
+        "rps": 2.0,
+        "error_pct": 0.0,
+        "p95_ms": 20,
+        "baseline_error_pct": 0.0,
+        "baseline_p95_ms": 20
+      },
+      {
+        "service": "email",
+        "rps": 1.5,
+        "error_pct": 0.0,
+        "p95_ms": 50,
+        "baseline_error_pct": 0.0,
+        "baseline_p95_ms": 50
+      }
+    ]
+  },
+  "traces": [
+    {
+      "trace_id": "t001",
+      "service": "cart",
+      "operation": "oteldemo.CartService/EmptyCart",
+      "status": "error",
+      "message": "Can't access cart storage. System.ApplicationException",
+      "duration_ms": 6
+    },
+    {
+      "trace_id": "t002",
+      "service": "cart",
+      "operation": "oteldemo.CartService/GetCart",
+      "status": "ok",
+      "message": "",
+      "duration_ms": 4
+    },
+    {
+      "trace_id": "t003",
+      "service": "checkout",
+      "operation": "oteldemo.CheckoutService/PlaceOrder",
+      "status": "error",
+      "message": "failed to empty user cart during checkout: rpc error: code = FailedPrecondition",
+      "duration_ms": 220
+    }
+  ],
+  "logs": [
+    {
+      "service": "cart",
+      "severity": "error",
+      "message": "Can't access cart storage. System.ApplicationException: Wasn't able to connect to redis"
+    },
+    {
+      "service": "cart",
+      "severity": "info",
+      "message": "GetCartAsync called with userId=<id>"
+    },
+    {
+      "service": "checkout",
+      "severity": "error",
+      "message": "failed to empty user cart during checkout"
+    }
+  ],
+  "containers": [
+    {
+      "service": "frontend-proxy",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "frontend",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "checkout",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "payment",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "cart",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "product-catalog",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "recommendation",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "ad",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "currency",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "shipping",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "quote",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    },
+    {
+      "service": "email",
+      "status": "running",
+      "restart_count": 0,
+      "oom_killed": false,
+      "cpu_pct": 8.0,
+      "memory_mb": 120
+    }
+  ]
+}
