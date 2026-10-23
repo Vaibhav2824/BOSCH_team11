@@ -15,6 +15,7 @@ import requests
 from . import config
 
 TIMEOUT = 45
+PROJECT = os.getenv("COMPOSE_PROJECT", "opentelemetry-demo")
 
 
 # ---------------------------------------------------------------- Prometheus
@@ -185,7 +186,7 @@ def get_traces(service: str, kind: str = "errors", lookback: str = "10m", limit:
     params = {"query.service_name": service, "query.start_time_min": start.strftime(fmt),
               "query.start_time_max": now.strftime(fmt),
               # errors are usually a minority of traces, so pull more and filter here
-              "query.search_depth": 100 if kind == "errors" else 40}
+              "query.search_depth": 40 if kind == "errors" else 20}
     if kind == "slow":
         params["query.duration_min"] = min_duration
     base = (config.JAEGER_URL or "http://localhost:8080/jaeger/ui").rstrip("/")
@@ -339,9 +340,10 @@ def _ago(iso):
 
 def container_health(service: str = ""):
     """Status, restarts, OOM kills, exit code, uptime, CPU/memory use and CPU limit per container."""
-    flt = f"label=com.docker.compose.service={service}" if service else "label=com.docker.compose.service"
-    ids = subprocess.run(["docker", "ps", "-a", "-q", "--filter", flt],
-                         capture_output=True, text=True).stdout.split()
+    args = ["docker", "ps", "-a", "-q", "--filter", f"label=com.docker.compose.project={PROJECT}"]
+    if service:
+        args += ["--filter", f"label=com.docker.compose.service={service}"]
+    ids = subprocess.run(args, capture_output=True, text=True).stdout.split()
     if not ids:
         return {"error": f"no containers found for {service or 'compose services'}"}
     info = json.loads(subprocess.run(["docker", "inspect", *ids], capture_output=True, text=True).stdout)

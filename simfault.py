@@ -38,8 +38,9 @@ def sh(*args, check=True):
 
 
 def container(service):
-    cid = sh("docker", "ps", "-a", "-q", "--filter",
-             f"label=com.docker.compose.service={service}")
+    cid = sh("docker", "ps", "-a", "-q",
+             "--filter", "label=com.docker.compose.project=opentelemetry-demo",
+             "--filter", f"label=com.docker.compose.service={service}")
     if not cid:
         sys.exit(f"no container for service '{service}'. Try: python simfault.py list")
     return cid.splitlines()[0]

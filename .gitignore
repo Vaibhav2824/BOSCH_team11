@@ -1,8 +1,19 @@
 .venv/
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 env.sh
 .env
 runs/
 .simfault_state.json
+=======
+.pytest_cache/
+.ruff_cache/
+.env
+logs/
+KILL
+*.sqlite
+.replay_cache/
+
+>>>>>>> 2ef832121fd19b481206d6bf4ba94813fed9329d
 .DS_Store

@@ -1,0 +1,12 @@
+{"t": "17:15:58", "kind": "alert", "alert": "Alert: checkout requests timing out", "model": "gemini/gemini-3-flash-preview"}
+{"t": "17:16:18", "kind": "tool", "step": 1, "name": "service_overview", "args": {"window": "5m"}, "evidence_id": "ev_1"}
+{"t": "17:16:24", "kind": "tool", "step": 2, "name": "service_detail", "args": {"service": "checkout", "window": "5m"}, "evidence_id": "ev_2"}
+{"t": "17:16:30", "kind": "tool", "step": 3, "name": "service_detail", "args": {"window": "5m", "service": "shipping"}, "evidence_id": "ev_3"}
+{"t": "17:16:48", "kind": "tool", "step": 4, "name": "get_traces", "args": {"kind": "slow", "service": "checkout"}, "evidence_id": "ev_4"}
+{"t": "17:17:07", "kind": "tool", "step": 5, "name": "get_traces", "args": {"service": "shipping", "kind": "slow"}, "evidence_id": "ev_5"}
+{"t": "17:17:23", "kind": "tool", "step": 6, "name": "container_health", "args": {}, "evidence_id": "ev_6"}
+{"t": "17:17:50", "kind": "tool", "step": 7, "name": "search_logs", "args": {"service": "checkout"}, "evidence_id": "ev_7"}
+{"t": "17:18:01", "kind": "tool", "step": 8, "name": "search_logs", "args": {"service": "product-catalog"}, "evidence_id": "ev_8"}
+{"t": "17:18:04", "kind": "tool", "step": 9, "name": "search_logs", "args": {"service": "shipping"}, "evidence_id": "ev_9"}
+{"t": "17:18:06", "kind": "tool", "step": 10, "name": "search_logs", "args": {"service": "payment"}, "evidence_id": "ev_10"}
+{"t": "17:18:06", "kind": "diagnosis", "decision": "escalate", "confidence": 0.0, "note": "budget exhausted"}
