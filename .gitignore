@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+env.sh
+.env
+runs/
+.simfault_state.json
+.DS_Store
