@@ -4,6 +4,7 @@ The organisers' final JSON schema was not present in the starter repository.
 These models follow the frozen team contract and are intentionally independent
 of any particular practice incident.
 """
+
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
